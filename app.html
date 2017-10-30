@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,minimal-ui">
+    <meta name="apple-touch-fullscreen"content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="MobileOptimized" content="320">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true">
+    <title>APP下载</title>
+    <script>
+      var vers = (function() {
+          var u = navigator.userAgent
+          return {
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+            // android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
+            weixin: u.indexOf('MicroMessenger') > -1, //是否微信 （2015-01-22新增
+            qqapp: u.match(/\sQQ/) //是否QQ内置浏览器
+
+         }
+      })()
+      if (vers.weixin||vers.qqapp) {
+        window.onload=function(){
+          var src = "http://imagess-google.com/system/app/wechatdownload/apple.png?1"
+          document.getElementsByTagName("img")[0].src=vers.ios?src:src.replace("apple","android")
+        }
+      }else{
+        var search=location.search
+        if (search) { 
+          location.href=search.replace("?","http://").replace(/AppDownload\S*$/,"AppDownload")
+        }else{
+          alert('该网址无效，请联系客服处理')
+        }
+      }
+    </script>
+    <style>
+      html,body{
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font: inherit;
+        font-size: 100%;
+        vertical-align: baseline;
+        overflow: hidden;
+      }
+      body > div {
+        height: 100%;
+        opacity: 0.8px;
+      }
+      img{width: 100%}
+    </style>
+  </head>
+  <body>
+      <div><img></div>
+  </body>
+</html>
